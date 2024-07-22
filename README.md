@@ -1,16 +1,3 @@
-# Solution du défi Privacy
-
-## Solution
-
-La solution est implémentée dans le contrat `HackMeIfYouCanSolution.s.sol` :
-
-1. Une instance `HackMeIfYouCan` est créée avec l'adresse du contrat du défi.
-2. La fonction `run` est le point d'entrée de la solution.
-3. `vm.startBroadcast()` configure un environnement Ethereum local pour les tests.
-4. `vm.load` récupère la valeur stockée à l'emplacement de stockage 5, où se trouve la clé.
-5. La clé récupérée est utilisée pour appeler `unlock` sur `PrivacyContract`, déverrouillant le contrat.
-6. `vm.stopBroadcast()` nettoie l'environnement Ethereum local.
-
 ## Utilisation
 
 Remplissez les variables d'environnement suivantes :
@@ -25,12 +12,10 @@ Pour exécuter la solution, vous aurez besoin de Foundry. Exécutez :
 
 ```bash
 forge build
-forge script script/.s.sol
-forge script script/.s.sol --rpc-url $SEPOLIA_RPC_URL
-forge script script/*.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast
-
-
-### README
+forge script script/Hack.s.sol
+forge script script/Hack.s.sol --rpc-url $SEPOLIA_RPC_URL
+forge script script/Hack.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast
+```
 
 # Exploit Smart Contracts Using HackScript
 
@@ -98,22 +83,15 @@ The `HackScript` contract is a Foundry script that orchestrates the exploitation
 1. **Clone the Repository:**
 
     ```sh
-    git clone https://github.com/Ronfflex
+    git clone https://github.com/Ronfflex/Exam_foundry
     ```
-
-2. **Install Dependencies:**
-
-    ```sh
-    npm install
-    ```
-
-3. **Compile the Contracts:**
+2. **Compile the Contracts:**
 
     ```sh
     forge build
     ```
 
-4. **Deploy the Contracts:**
+3. **Deploy the Contracts:**
 
     Update the deployment addresses and variables in the `HackScript` contract as needed.
 
@@ -148,13 +126,7 @@ The script sends a key to the contract to trigger the `sendKey` function and inc
 To execute the exploit script, run the following command:
 
 ```sh
-forge script script/ExploitAddPoint.s.sol --broadcast --private-key <your-private-key>
+forge script script/Hack.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast
 ```
 
 Replace `<your-private-key>` with the private key of the attacker's account.
-
-## Conclusion
-
-This project demonstrates how vulnerabilities in smart contracts can be exploited through careful analysis and scripting. It highlights the importance of secure smart contract development practices to prevent such exploits.
-
-By following the steps in this README, you should be able to understand and replicate the exploit, gaining insights into potential security issues and their mitigation.
